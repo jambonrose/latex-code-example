@@ -10,55 +10,62 @@
 
 \begin{document}
 
-This is a short file to test the various features and shortcuts built in our preamble file.
+This is a short file to test the various features and shortcuts built in our preamble file. The purpose is to provide \TeX{} files with their output in a PDF. Users may then easily read, learn, or simply copy from the \TeX{} files to jumstart their projects.
 
+Note that all code is licensed under the Simplified BSD License, a copy of which is included with the project code, found \link{https://github.com/jambonrose/latex-code-example}{here}.
+
+\section{Code Listing}
+
+\subsection{Verbatim}
 
 Here is an example that uses \LaTeX 's \verb|verbatim| environment.
+
 \begin{verbatim}
-INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to
-    # enable admin documentation:
-    # 'django.contrib.admindocs',
-    'new_app',
-)
+from django.db import models
+
+class Poll(models.Model):
+    question = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    poll = models.ForeignKey(Poll)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
 \end{verbatim}
+\subsection{Listings}
 
 The following uses the \verb|listings| package to create an environment.
 
-\begin{lstlisting}[basicstyle=\ttfamily,%
-                   caption={Django's Installed Apps in settings.py},%
+\noindent\minipage{\linewidth} % this avoids the code below being split across the page
+\begin{lstlisting}[aboveskip=\baselineskip,%
+                   basicstyle=\ttfamily,%
+                   belowskip=\baselineskip,%
+                   caption={models.py from Django Tutorial},%
                    columns=fixed,%
+                   firstnumber=1,%
                    frame=single,%
-                   firstnumber=113,%
-                   label=code:django:installed_apps,%
+                   label=code:django:models_basic,%
                    language=Python,%
-                   numbers=left]
-INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to
-    # enable admin documentation:
-    # 'django.contrib.admindocs',
-    'new_app',
-)
+                   numbers=left,%
+                   showstringspaces=false,%
+                   showspaces=false]
+from django.db import models
+
+class Poll(models.Model):
+    question = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    poll = models.ForeignKey(Poll)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
 \end{lstlisting}
+\endminipage % ends the samepage environment mentioned before the listing
 
 For more on the \verb|listings| package, please see \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{the wikibook on the subject}, or else \link{http://www.ctan.org/tex-archive/macros/latex/contrib/listings/}{the documentation provided by CTAN.}
 
+\begin{center}
 Simplified BSD License \textcopyright 2013, Andrew Pinkham
+ \end{center}
 
 \end{document}
