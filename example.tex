@@ -10,6 +10,8 @@
 
 This is a short file to test the various features and shortcuts built in our preamble file.
 
+
+Here is an example that uses \LaTeX 's \verb|verbatim| environment.
 \begin{verbatim}
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -26,5 +28,33 @@ INSTALLED_APPS = (
     'new_app',
 )
 \end{verbatim}
+
+The following uses the \verb|listings| package to create an environment.
+
+\begin{lstlisting}[basicstyle=\ttfamily,%
+                   caption={Django's Installed Apps in settings.py},%
+                   columns=fixed,%
+                   frame=single,%
+                   firstnumber=113,%
+                   label=code:django:installed_apps,%
+                   language=Python,%
+                   numbers=left]
+INSTALLED_APPS = (
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    # Uncomment the next line to enable the admin:
+    # 'django.contrib.admin',
+    # Uncomment the next line to
+    # enable admin documentation:
+    # 'django.contrib.admindocs',
+    'new_app',
+)
+\end{lstlisting}
+
+For more on the \verb|listings| package, please see \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{the wikibook on the subject}, or else \link{http://www.ctan.org/tex-archive/macros/latex/contrib/listings/}{the documentation provided by CTAN.}
 
 \end{document}

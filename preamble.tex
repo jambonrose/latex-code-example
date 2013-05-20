@@ -42,9 +42,19 @@
 \usepackage{cprotect}
 
 % safely print URLs and create links
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+
+% underline text correctly
+% specify 'normalem' so that emphasis blocks are not replaced with underlined text
+\usepackage[normalem]{ulem}
 
 % conditional logic in new environments
 \usepackage{xstring}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DEFINITIONS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMMANDS
+
+\newcommand{\link}[2]{\href{#1}{\color{blue}\uline{#2}}}
