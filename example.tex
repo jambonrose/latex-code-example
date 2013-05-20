@@ -1,8 +1,8 @@
-% !TEX TS-program = pdflatex
+% !TEX TS-program = pdflatex -shell-escape
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = en-US
 
-% Example: $ pdflatex -jobname=expected_output example
+% Example: $ pdflatex -jobname=expected_output -shell-escape example.tex
 
 \input{preamble}
 
@@ -20,7 +20,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
+    # Uncomment the next line to
+    # enable admin documentation:
     # 'django.contrib.admindocs',
     'new_app',
 )

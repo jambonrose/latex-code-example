@@ -4,3 +4,47 @@
 % !TEX root = example.tex
 
 \documentclass[a4paper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IMPORTS
+
+% surprisingly, the order of some of these matter
+% the following order works for me using TeXlive from MacTeX
+% no guarantees for anyone/anything else
+
+% font imports
+\usepackage[T1]{fontenc}
+\usepackage{courier}
+
+% colors
+\usepackage{color, xcolor}
+
+% packages for appropriately floating captions
+\usepackage{floatrow, caption}
+
+% allow for frames/borders around text
+% using TikZ allows for rounded corners
+\usepackage[framemethod=TikZ]{mdframed}
+
+% used for code listing
+% minted (imported below) does not provide inline code - this does
+\usepackage{listings}
+
+% highlight code automagically via Pygments
+% code listings will be organized numerically by chapter
+\usepackage[chapter]{minted}
+
+% single quotes in Verbatim environments are output as single quotes
+% (silly, ain't it?)
+\usepackage{upquote}
+
+% allow for Verbatim text in captions
+\usepackage{cprotect}
+
+% safely print URLs and create links
+\usepackage{hyperref}
+
+% conditional logic in new environments
+\usepackage{xstring}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
