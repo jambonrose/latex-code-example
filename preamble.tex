@@ -33,8 +33,9 @@
 \usepackage{listings}
 
 % highlight code automagically via Pygments
-% code listings will be organized numerically by chapter
-\usepackage[chapter]{minted}
+% code listings will be organized numerically by section
+% as opposed to chapter
+\usepackage[section]{minted}
 
 % single quotes in Verbatim environments are output as single quotes
 % (silly, ain't it?)
@@ -43,15 +44,16 @@
 % allow for Verbatim text in captions
 \usepackage{cprotect}
 
-% safely print URLs and create links
-\usepackage[hidelinks]{hyperref}
-
 % underline text correctly
 % specify 'normalem' so that emphasis blocks are not replaced with underlined text
+% used to create command to custom color hyperref links
 \usepackage[normalem]{ulem}
 
 % conditional logic in new environments
 \usepackage{xstring}
+
+% safely print URLs and create links
+\usepackage[hidelinks]{hyperref}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DEFINITIONS

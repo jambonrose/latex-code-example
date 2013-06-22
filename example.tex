@@ -12,11 +12,11 @@
 
 This is a short file to test the various features and shortcuts built in our preamble file. The purpose is to provide \TeX{} files with their output in a PDF. Users may then easily read, learn, or simply copy from the \TeX{} files to jumstart their projects.
 
-Note that all code is licensed under the Simplified BSD License, a copy of which is included with the project code, found \link{https://github.com/jambonrose/latex-code-example}{here}.
+Note that all code is licensed under the Simplified BSD License, a copy of which is included with the project code, found \link{https://github.com/jambonrose/latex-code-example}{on github}.
 
 \section{Code Listing}
 
-\subsection{Verbatim}
+\subsection{\texttt{verbatim} Environment}
 
 Here is an example that uses \LaTeX 's \verb|verbatim| environment.
 
@@ -32,7 +32,14 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 \end{verbatim}
-\subsection{Listings}
+
+Note that the quotes used are standard programming quotes, as opposed to \LaTeX 's backtick-quote combination. This is possible because of the \verb|upquote| package, included in the preamble of the document.
+
+\LaTeX{} further supplies the \verb|\verb| command, allowing for inline \verb|verbatim| formatting.
+
+Finally, note that the \verb|\verb| command can only be used in captions if the entire command is preceded by the \verb|\cprotect| command, included in the \verb|cprotect| package, which you can read more about \link{http://www.ctan.org/tex-archive/macros/latex/contrib/cprotect}{on the documentation provided by CTAN}. On a related note, text in chapter titles (or section, subsection, etc) are formatted with \verb|\texttt| in this document, as the use of \verb|\verb| in these areas appears to conflict with the \verb|hyperref| package.
+
+\subsection{\texttt{listings} Package}
 
 The following uses the \verb|listings| package to create an environment.
 
@@ -44,7 +51,7 @@ The following uses the \verb|listings| package to create an environment.
                    columns=fixed,%
                    firstnumber=1,%
                    frame=single,%
-                   label=code:django:models_basic,%
+                   label=code:django:models_basic_listing,%
                    language=Python,%
                    numbers=left,%
                    showstringspaces=false,%
@@ -62,7 +69,50 @@ class Choice(models.Model):
 \end{lstlisting}
 \endminipage % ends the samepage environment mentioned before the listing
 
-On top of an environment, the \lstinline{listings} package also provides a way to format inline text using \lstinline|\lstinline{}|, replacing the \lstinline{verb} command. For more on the \lstinline{listings} package, please see \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{the wikibook on the subject}, or else \link{http://www.ctan.org/tex-archive/macros/latex/contrib/listings/}{the documentation provided by CTAN.}
+On top of an environment, the \lstinline{listings} package also provides a way to format inline text using \lstinline|\lstinline{}|, replacing the \lstinline{verb} command. Note that the settings for \lstinline|\lstinline{}| must be set in the options of \lstinline|\lstset{}| in the preamble. For more on the \lstinline{listings} package, please see \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{the wikibook on the subject}, or else \link{http://www.ctan.org/tex-archive/macros/latex/contrib/listings/}{the documentation provided by CTAN.}
+Note that while not discussed here, it is possible to create a list of listings (a table of contents of all the listings).
+
+\subsection{\texttt{Minted} Package}
+
+The last environment I'll demonstrate is the \verb|minted| package. It takes code in the environment, and runs it through Python's \verb|pygments| library. The resulting colored \LaTeX{} syntax is placed in a \verb|verbatim| environment.
+
+\begin{minted}{python}
+from django.db import models
+
+class Poll(models.Model):
+    question = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    poll = models.ForeignKey(Poll)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+\end{minted}
+
+While \verb|minted| does not provide an inline formatting command, it does provide a shortcut command \verb|mint| for short code snippets.
+
+\mint{python}/fib = lambda n: n if n < 2 else fib(n-1) + fib(n-2)/
+
+The \verb|minted| environment also provides the ability to be inserted into listings, with labels and captions.
+
+\begin{listing}[H]
+\begin{minted}{python}
+from django.db import models
+
+class Poll(models.Model):
+    question = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    poll = models.ForeignKey(Poll)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+\end{minted}
+\caption{models.py from Django Tutorial}
+\label{code:django:models_basic_minted}
+\end{listing}
+
+\listoflistings
 
 \begin{center}
 Simplified BSD License \textcopyright 2013, Andrew Pinkham
