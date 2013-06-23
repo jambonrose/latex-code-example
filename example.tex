@@ -53,7 +53,9 @@ Note that the quotes used are standard programming quotes, as opposed to \LaTeX 
 
 \LaTeX{} further supplies the \verb|\verb| command, allowing for inline \verb|verbatim| formatting.
 
-Finally, note that the \verb|\verb| command can only be used in captions if the entire command is preceded by the \verb|\cprotect| command, included in the \verb|cprotect| package, which you can read more about \link{http://www.ctan.org/tex-archive/macros/latex/contrib/cprotect}{on the documentation provided by CTAN}. On a related note, text in chapter titles (or section, subsection, etc) are formatted with \verb|\texttt| in this document, as the use of \verb|\verb| in these areas appears to conflict with the \verb|hyperref| package.
+On a related note, note that the \verb|\verb| command can only be used in captions if the entire command is preceded by the \verb|\cprotect| command, included in the \verb|cprotect| package, which you can read more about \link{http://www.ctan.org/tex-archive/macros/latex/contrib/cprotect}{on the documentation provided by CTAN}. An example is demonstrated in the caption of listing~\ref{code:django:models_basic_minted} on page~\pageref{code:django:models_basic_minted}.
+
+Finally, text in chapter titles (or section, subsection, etc) are formatted with \verb|\texttt| in this document, as the use of \verb|\verb| in these areas appears to conflict with the \verb|hyperref| package. We could use \verb|\texttt| in captions as well, but that would defeat our purpose of demonstrating all the tools.
 
 \subsection{\texttt{listings} Package}
 
