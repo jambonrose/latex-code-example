@@ -1,9 +1,13 @@
+# sort this file using:
+# cut -f 1 .gitignore | sort -f | uniq > .gitignore
 *.acn
 *.acr
 *.alg
 *.aux
 *.bbl
 *.blg
+*.cpt
+*.DS_Store
 *.dvi
 *.fdb_latexmk
 *.glg
@@ -15,6 +19,7 @@
 *.ist
 *.lof
 *.log
+*.lol
 *.lot
 *.maf
 *.mtc
@@ -24,13 +29,10 @@
 *.out
 *.pdfsync
 *.ps
+*.pyg
 *.snm
 *.synctex.gz
+*.tdo
 *.toc
 *.vrb
 *.xdy
-*.tdo
-*.DS_Store
-*.pyg
-*.lol
-*.cpt
