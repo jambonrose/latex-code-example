@@ -40,6 +40,11 @@
 % single quotes in Verbatim environments are output as single quotes
 % (silly, ain't it?)
 \usepackage{upquote}
+% the following hack fixes upquote use with minted
+% when running Pygments 1.6
+\AtBeginDocument{%
+\def\PYZsq{\textquotesingle}%
+}
 
 % allow for Verbatim text in captions
 \usepackage{cprotect}
