@@ -32,6 +32,9 @@
 % using TikZ allows for rounded corners
 \usepackage[framemethod=TikZ]{mdframed}
 
+% display 'lorem ipsum' automagically
+\usepackage{lipsum}
+
 % used for code listing
 % minted (imported below) does not provide inline code - this does
 \usepackage{listings}
@@ -61,6 +64,10 @@
 % conditional logic in new environments
 \usepackage{xstring}
 
+% allows for the creation of columns
+% demonstrated when printing the table of contents
+\usepackage{multicol}
+
 % safely print URLs and create links
 \usepackage[hidelinks]{hyperref}
 
@@ -73,8 +80,40 @@
     showspaces=false%
 }
 
+% new colors
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{codeFrame}{gray}{0.3}
+\definecolor{codeBG}{gray}{0.99}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COMMANDS
 
 \newcommand{\link}[2]{\href{#1}{\color{blue}\uline{#2}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENVRIONMENTS
+
+% ASIDE BOX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newmdenv[ %
+		usetwoside=false,%
+		nobreak=true,%
+		roundcorner=7pt,%
+		outerlinewidth=0.5pt,%
+		linecolor=black,%
+		skipabove=\topskip,%
+		skipbelow=\topskip,%
+		rightmargin=10pt,%
+		leftmargin=10pt,%
+		innertopmargin=\baselineskip,%
+		innerbottommargin=\baselineskip,%
+		innerrightmargin=10pt,%
+		innerleftmargin=10pt,%  
+		backgroundcolor=light-gray,%
+		]{asidebox}
+
+\newenvironment{aside}[1][Default]
+    { %
+      \begin{samepage} %
+      \begin{asidebox}[frametitle=Aside - {#1}] %
+    }
+    {\end{asidebox}\end{samepage}}

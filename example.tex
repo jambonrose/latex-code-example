@@ -28,10 +28,13 @@ This is a short file to test the various features and shortcuts built in our pre
 Note that all code is licensed under the Simplified BSD License, a copy of which is included with the project code, found \link{https://github.com/jambonrose/latex-code-example}{on github}.
 \end{abstract}
 
+\begin{multicols}{2}
 \tableofcontents
+\columnbreak
 \listoflistings
+\end{multicols}
 
-\section{Code Listing}
+\section[Basic Techniques]{Basic Tools and Techniques for Listing Code}
 
 \subsection{\texttt{verbatim} Environment}
 
@@ -130,6 +133,18 @@ class Choice(models.Model):
 \cprotect\caption{\verb|models.py| from Django Tutorial}
 \label{code:django:models_basic_minted}
 \end{listing}
+
+\section[Macros]{Custom Environments and Macros}
+
+This section will demonstrate various macros defined in the preamble that you can use to make your document clearer.
+
+\subsection{Aside}
+
+While not for code, per se, this aside environment demonstrates the use of the \verb|mdframed| package.
+
+\begin{aside}[Lorem Ipsum Example]
+\lipsum[1] % alternative for more: \lipsum[1-3]
+\end{aside}
 
 \begin{center}
 Simplified BSD License \textcopyright 2013, Andrew Pinkham
