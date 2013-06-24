@@ -34,6 +34,8 @@ Note that all code is licensed under the Simplified BSD License, a copy of which
 \listoflistings
 \end{multicols}
 
+\newpage
+
 \section[Basic Techniques]{Basic Tools and Techniques for Listing Code}
 
 \subsection{\texttt{verbatim} Environment}
@@ -55,7 +57,7 @@ class Choice(models.Model):
 
 Note that the quotes used are standard programming quotes, as opposed to \LaTeX 's backtick-quote combination. This is possible because of the \verb|upquote| package, included in the preamble of the document.
 
-\LaTeX{} further supplies the \verb|\verb| command, allowing for inline \verb|verbatim| formatting.
+\LaTeX{} further supplies the \verb|\verb| command, allowing for inline formatting.
 
 On a related note, note that the \verb|\verb| command can only be used in captions if the entire command is preceded by the \verb|\cprotect| command, included in the \verb|cprotect| package, which you can read more about \link{http://www.ctan.org/tex-archive/macros/latex/contrib/cprotect}{on the documentation provided by CTAN}. An example is demonstrated in the caption of listing~\ref{code:django:models_basic_minted} on page~\pageref{code:django:models_basic_minted}.
 
@@ -69,7 +71,7 @@ The following uses the \verb|listings| package to create an environment.
 \begin{lstlisting}[aboveskip=\baselineskip,%
                    basicstyle=\ttfamily,%
                    belowskip=\baselineskip,%
-                   caption={\lstinline{models.py} from Django Tutorial},%
+                   caption={\lstinline{models.py} from Django Tutorial using Listings},%
                    columns=fixed,%
                    firstnumber=1,%
                    frame=single,%
@@ -130,7 +132,7 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 \end{minted}
-\cprotect\caption{\verb|models.py| from Django Tutorial}
+\cprotect\caption{\verb|models.py| from Django Tutorial using Minted}
 \label{code:django:models_basic_minted}
 \end{listing}
 
