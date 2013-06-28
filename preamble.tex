@@ -85,6 +85,11 @@
 \definecolor{codeFrame}{gray}{0.3}
 \definecolor{codeBG}{gray}{0.99}
 
+
+% make caption text white, backed by black box across line
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{codeFrame}{\parbox{\textwidth-6pt}{#1#2#3}}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COMMANDS
 
@@ -119,3 +124,46 @@
       \begin{asidebox}[frametitle=Aside - {#1}] %
     }
     {\end{asidebox}\end{samepage}}
+
+% PYTHON CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% use:
+% no lines:
+%     \begin{pycode}{caption}{file_name}{label}
+% lines:
+%     \begin{pycode}{caption}{file_name}[0]{label}
+%     integer will be used as first line number
+% Example:
+%     \begin{pycode}{Adding Tags}{/models.py}[32]{code:py:model_tag_add}
+\makeatletter
+    \NewDocumentEnvironment{pycode}{ m v o m }
+        { % environment start
+            \VerbatimEnvironment
+            % move caption to top of listing
+            \floatsetup[listing]{style=Plaintop}
+            \captionsetup[listing]{skip=0pt,format=listing,labelfont=white,textfont=white}
+            \minted@resetoptions
+            \setkeys{minted@opt}{%
+                                frame=bottomline,%
+                                framerule=2pt,%
+                                bgcolor=codeBG,%
+                                rulecolor=\color{codeFrame}%
+                                }
+            \IfNoValueTF{#3}{}{%
+                \setkeys{minted@opt}{%
+                                    linenos=True,%
+                                    firstnumber=#3%
+                                    }%
+            }
+            \renewcommand{\minted@proglang}[1]{python}
+            \begin{listing}[H]
+            \caption{#1\\File: \texttt{#2}}
+            \label{code:python:#3}
+            \begin{VerbatimOut}{\jobname.pyg}%
+        }
+        { % environment end
+            \end{VerbatimOut}
+            \minted@pygmentize{\minted@proglang{}}
+            \DeleteFile{\jobname.pyg}
+            \end{listing}%
+        }
+\makeatother
