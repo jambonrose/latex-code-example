@@ -1,0 +1,41 @@
+% !TEX TS-program = pdflatex -shell-escape
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en-US
+% !TEX root = 0_article.tex
+% Simplified BSD License (c) 2013, Andrew Pinkham
+
+\begin{minted}{python}
+from django.db import models
+
+class Poll(models.Model):
+    question = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    poll = models.ForeignKey(Poll)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+\end{minted}
+
+While \verb|minted| does not provide an inline formatting command, it does provide a shortcut command \verb|mint| for short code snippets.
+
+\mint{python}/fib = lambda n: n if n < 2 else fib(n-1) + fib(n-2)/
+
+The \verb|minted| environment also provides the ability to be inserted into listings, with labels and captions.
+
+\begin{listing}[H]
+\begin{minted}{python}
+from django.db import models
+
+class Poll(models.Model):
+    question = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    poll = models.ForeignKey(Poll)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+\end{minted}
+\cprotect\caption{\verb|models.py| from Django Tutorial using Minted}
+\label{code:django:models_basic_minted}
+\end{listing}

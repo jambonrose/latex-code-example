@@ -1,0 +1,38 @@
+% !TEX TS-program = pdflatex -shell-escape
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en-US
+% !TEX root = 0_article.tex
+% Simplified BSD License (c) 2013, Andrew Pinkham
+
+\subsection{\texttt{listings} Package}
+
+The following uses the \verb|listings| package to create an environment.
+
+\noindent\minipage{\linewidth} % this avoids the code below being split across the page
+\begin{lstlisting}[aboveskip=\baselineskip,%
+                   basicstyle=\ttfamily,%
+                   belowskip=\baselineskip,%
+                   caption={\lstinline{models.py} from Django Tutorial using Listings},%
+                   columns=fixed,%
+                   firstnumber=1,%
+                   frame=single,%
+                   label=code:django:models_basic_listing,%
+                   language=Python,%
+                   numbers=left,%
+                   showstringspaces=false,%
+                   showspaces=false]
+from django.db import models
+
+class Poll(models.Model):
+    question = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    poll = models.ForeignKey(Poll)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+\end{lstlisting}
+\endminipage % ends the samepage environment mentioned before the listing
+
+On top of an environment, the \lstinline{listings} package also provides a way to format inline text using \lstinline|\lstinline{}|, replacing the \lstinline{verb} command. Note that the settings for \lstinline|\lstinline{}| must be set in the options of \lstinline|\lstset{}| in the preamble. For more on the \lstinline{listings} package, please see \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{the wikibook on the subject}, or else \link{http://www.ctan.org/tex-archive/macros/latex/contrib/listings/}{the documentation provided by CTAN.}
+Note that while not discussed here, it is possible to create a list of listings (a table of contents of all the listings).

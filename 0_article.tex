@@ -2,7 +2,7 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX spellcheck = en-US
 
-% Example: $ pdflatex -jobname=expected_output -shell-escape example.tex
+% Example: $ pdflatex -jobname=expected_output -shell-escape 0_article.tex
 
 % Simplified BSD License (c) 2013, Andrew Pinkham
 
@@ -11,10 +11,8 @@
 \author{Andrew Pinkham} % use \and between authors if multiple
 \date{\today}
 
-% import preamble.tex
-% allows us to use packages imported in file
-% as well as any macro's we've created
-\input{preamble}
+% import all packages, declarations, environments, macros, etc
+\input{0_preamble}
 
 % start the actual document
 \begin{document}
@@ -22,161 +20,14 @@
 % create a title using the title, author, and date info above
 \maketitle
 
-\begin{abstract}
-This project is meant to help jump start writers looking to display source code in \LaTeX{} documents. The project provides a set of \TeX{} files and a PDF of the output of said \TeX{} files. The intention is that a reader may view the various code listing demonstrations in the PDF, and then read, learn, or simply copy the \LaTeX{} necessary to display their code in the same manner. Basic knowledge of \LaTeX{} is assumed.
-
-We display code using the following: \verb|verbatim|, \verb|listings| (not to be confused with \verb|listing|), and \verb|minted|.
-
-To avoid a monolithic \LaTeX{} document and make perusing the code simpler, each subsection is it's own \TeX{} file, as is the preamble.
-
-Note that all code is licensed under the Simplified BSD License, a copy of which is included with the project code, found \link{https://github.com/jambonrose/latex-code-example}{on github}.
-\end{abstract}
-
-
-% below we print the table of contents and list of examples in two columns
-\setlength{\columnseprule}{1pt} % add seperator between columns
-\begin{multicols}{2} % create columns
-\begin{footnotesize} % make fonts smaller
-\renewcommand\contentsname{\small\centering Contents} % change title (font size)
-\tableofcontents
-\columnbreak
-\renewcommand\listoflistingscaption{\small\centering List of Code Examples} % change title
-\listoflistings
-\end{footnotesize}
-\end{multicols}
-
-\newpage
-
+% use of include causes page breaks; we thus opt for input
+\input{1_abstract}
 \section[Basic Techniques]{Basic Tools and Techniques for Listing Code}
-
-\subsection{\texttt{verbatim} Environment}
-
-Here is an example that uses \LaTeX 's \verb|verbatim| environment.
-
-\begin{verbatim}
-from django.db import models
-
-class Poll(models.Model):
-    question = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-class Choice(models.Model):
-    poll = models.ForeignKey(Poll)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-\end{verbatim}
-
-Note that the quotes used are standard programming quotes, as opposed to \LaTeX 's backtick-quote combination. This is possible because of the \verb|upquote| package, included in the preamble of the document.
-
-\LaTeX{} further supplies the \verb|\verb| command, allowing for inline formatting.
-
-On a related note, note that the \verb|\verb| command can only be used in captions if the entire command is preceded by the \verb|\cprotect| command, included in the \verb|cprotect| package, which you can read more about \link{http://www.ctan.org/tex-archive/macros/latex/contrib/cprotect}{on the documentation provided by CTAN}. An example is demonstrated in the caption of listing~\ref{code:django:models_basic_minted} on page~\pageref{code:django:models_basic_minted}.
-
-Finally, text in chapter titles (or section, subsection, etc) are formatted with \verb|\texttt| in this document, as the use of \verb|\verb| in these areas appears to conflict with the \verb|hyperref| package. We could use \verb|\texttt| in captions as well, but that would defeat our purpose of demonstrating all the tools.
-
-\subsection{\texttt{listings} Package}
-
-The following uses the \verb|listings| package to create an environment.
-
-\noindent\minipage{\linewidth} % this avoids the code below being split across the page
-\begin{lstlisting}[aboveskip=\baselineskip,%
-                   basicstyle=\ttfamily,%
-                   belowskip=\baselineskip,%
-                   caption={\lstinline{models.py} from Django Tutorial using Listings},%
-                   columns=fixed,%
-                   firstnumber=1,%
-                   frame=single,%
-                   label=code:django:models_basic_listing,%
-                   language=Python,%
-                   numbers=left,%
-                   showstringspaces=false,%
-                   showspaces=false]
-from django.db import models
-
-class Poll(models.Model):
-    question = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-class Choice(models.Model):
-    poll = models.ForeignKey(Poll)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-\end{lstlisting}
-\endminipage % ends the samepage environment mentioned before the listing
-
-On top of an environment, the \lstinline{listings} package also provides a way to format inline text using \lstinline|\lstinline{}|, replacing the \lstinline{verb} command. Note that the settings for \lstinline|\lstinline{}| must be set in the options of \lstinline|\lstset{}| in the preamble. For more on the \lstinline{listings} package, please see \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{the wikibook on the subject}, or else \link{http://www.ctan.org/tex-archive/macros/latex/contrib/listings/}{the documentation provided by CTAN.}
-Note that while not discussed here, it is possible to create a list of listings (a table of contents of all the listings).
-
-\subsection{\texttt{Minted} Package}
-
-The last environment I'll demonstrate is the \verb|minted| package. It takes code in the environment, and runs it through Python's \verb|pygments| library. The resulting colored \LaTeX{} syntax is placed in a \verb|verbatim| environment.
-
-\begin{minted}{python}
-from django.db import models
-
-class Poll(models.Model):
-    question = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-class Choice(models.Model):
-    poll = models.ForeignKey(Poll)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-\end{minted}
-
-While \verb|minted| does not provide an inline formatting command, it does provide a shortcut command \verb|mint| for short code snippets.
-
-\mint{python}/fib = lambda n: n if n < 2 else fib(n-1) + fib(n-2)/
-
-The \verb|minted| environment also provides the ability to be inserted into listings, with labels and captions.
-
-\begin{listing}[H]
-\begin{minted}{python}
-from django.db import models
-
-class Poll(models.Model):
-    question = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-class Choice(models.Model):
-    poll = models.ForeignKey(Poll)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-\end{minted}
-\cprotect\caption{\verb|models.py| from Django Tutorial using Minted}
-\label{code:django:models_basic_minted}
-\end{listing}
-
+\input{2_verbatim}
+\input{3_listings}
+\input{4_minted}
 \section[Macros]{Custom Environments and Macros}
-
-This section will demonstrate various macros defined in the preamble that you can use to make your document clearer.
-
-\subsection{Aside}
-
-While not for code, per se, this aside environment demonstrates the use of the \verb|mdframed| package.
-
-\begin{aside}[Lorem Ipsum Example]
-\lipsum[2] % alternative for more: \lipsum[1-3]
-\end{aside}
-
-\subsection{Python Code Macro}
-Here is an example of the macro in the preamble for listing Python code.
-
-\begin{pycode}%
-      {\texttt{models.py} using Minted Macro}%
-      {/models.py}[0]%
-      {code:django:models_minted_macro}
-from django.db import models
-
-class Poll(models.Model):
-    question = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-class Choice(models.Model):
-    poll = models.ForeignKey(Poll)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-\end{pycode}
+\input{5_macros}
 
 \begin{center}
 Simplified BSD License \textcopyright 2013, Andrew Pinkham
