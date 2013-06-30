@@ -18,9 +18,11 @@ While not for code, per se, this aside environment demonstrates the use of the \
 Here is an example of the macro in the preamble for listing Python code.
 
 \begin{pycode}%
+      {/models.py}
       {\texttt{models.py} using Minted Macro}%
-      {/models.py}[0]%
-      {code:django:models_minted_macro}
+      [Minted Macro Example]%
+      [0]%
+      {models_minted_macro}
 from django.db import models
 
 class Poll(models.Model):

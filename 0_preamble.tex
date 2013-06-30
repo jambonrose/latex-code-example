@@ -61,7 +61,7 @@
 \usepackage[normalem]{ulem}
 
 % conditional logic in new environments
-\usepackage{xstring}
+\usepackage{xparse}
 
 % allows for the creation of columns
 % demonstrated when printing the table of contents
@@ -132,9 +132,10 @@
 %     \begin{pycode}{caption}{file_name}[0]{label}
 %     integer will be used as first line number
 % Example:
-%     \begin{pycode}{Adding Tags}{/models.py}[32]{code:py:model_tag_add}
+%     \begin{pycode}{Adding Tags}{/models.py}[32]{model_tag_add}
+%     label becomes code:python:model_tag_add
 \makeatletter
-    \NewDocumentEnvironment{pycode}{ m v o m }
+    \NewDocumentEnvironment{pycode}{ v m o o m }
         { % environment start
             \VerbatimEnvironment
             % move caption to top of listing
@@ -147,16 +148,18 @@
                                 bgcolor=codeBG,%
                                 rulecolor=\color{codeFrame}%
                                 }
-            \IfNoValueTF{#3}{}{%
+            \IfNoValueTF{#4}{}{%
                 \setkeys{minted@opt}{%
                                     linenos=True,%
-                                    firstnumber=#3%
+                                    firstnumber=#4%
                                     }%
             }
             \renewcommand{\minted@proglang}[1]{python}
             \begin{listing}[H]
-            \caption{#1\\File: \texttt{#2}}
-            \label{code:python:#3}
+            \IfNoValueTF{#3}%
+                      {\caption[#2]{#2\\File: \texttt{#1}}}
+                      {\caption[#3]{#2\\File: \texttt{#1}}}
+            \label{code:python:#4}
             \begin{VerbatimOut}{\jobname.pyg}%
         }
         { % environment end
