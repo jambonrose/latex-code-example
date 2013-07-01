@@ -6,32 +6,23 @@
 
 \subsection{\texttt{minted} Package}
 
-The last environment I'll demonstrate is the \verb|minted| package. It takes code in the environment, and runs it through Python's \verb|pygments| library. The resulting colored \LaTeX{} syntax is placed in a \verb|verbatim| environment.
+Of the three methods demonstrated, the \verb|minted| package is the most complicated. It works by passing code through Python's \verb|pygments| library, and printing the result in a \verb|verbatim| environment. \verb|minted| thus requires that \verb|pygments| be installed, and that \LaTeX{} be compiled with the \verb|-shell-escape| flag.
 
-\addlisting{Minted Example} % manually add code below to list of examples
-\begin{minted}{python}
-from django.db import models
+The advantage of \verb|minted| is that source code is not only properly typeset with keywords bolded, but also colored. Syntax colors can be customized via \verb|pygments|.
 
-class Poll(models.Model):
-    question = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-class Choice(models.Model):
-    poll = models.ForeignKey(Poll)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-\end{minted}
-
-While \verb|minted| does not provide an inline formatting command, it does provide a shortcut command \verb|mint| for short code snippets.
+The \verb|minted| package actually provides two environments for writers to use. The first, \verb|mint|, is meant to be used for short snippets of code, as demonstrated below.
 
 \addlisting{Mint Example} % manually add code below to list of examples
 \mint{python}/fib = lambda n: n if n < 2 else fib(n-1) + fib(n-2)/
 
+The second environment provided by the package is the \verb|minted| environment, and is meant to be used on longer examples.
 
-The \verb|minted| environment also provides the ability to be inserted into listings, with labels and captions.
+Unlike the \verb|lstlisting| environment in the \verb|listings| package, the \verb|minted| environment does not provide a way to declare \verb|caption| or \verb|label| options. Instead, the \verb|minted| package imports the \verb|listing| (singular) package, which can be used to the same effect, as in the example below.
+
+As with \autoref{code:django:models_basic_listing} of the \verb|lstlisting| environment on \autopageref{code:django:models_basic_listing}, the frame and line numbers below are optional.
 
 \begin{listing}[H]
-\begin{minted}{python}
+\begin{minted}[frame=single, linenos]{python}
 from django.db import models
 
 class Poll(models.Model):
@@ -43,6 +34,8 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 \end{minted}
-\cprotect\caption[Listed Minted Example]{\verb|models.py| from Django Tutorial using Minted}
+\cprotect\caption[Minted Example]{\verb|models.py| from Django Tutorial using Minted}
 \label{code:django:models_basic_minted}
 \end{listing}
+
+With \verb|caption| or \verb|label| options, all code examples can be listed with \verb|\listoflistings|, as seen after the abstract of this document.
