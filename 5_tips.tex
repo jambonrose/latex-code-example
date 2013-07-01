@@ -1,0 +1,31 @@
+% !TEX TS-program = pdflatex -shell-escape
+% !TEX encoding = UTF-8 Unicode
+% !TEX spellcheck = en-US
+% !TEX root = 0_article.tex
+% Simplified BSD License (c) 2013, Andrew Pinkham
+
+\subsection{Tips and Tricks}
+
+\subsubsection{Same Page Listing}
+
+While \verb|minted| comes with an option to keep the entire code listing on the same page, neither \verb|verbatim| nor \verb|listing| come with one. To achieve this, the code can be placed in the following code snippet.
+
+\begin{listing}[H]
+\begin{minted}{latex}
+\noindent\minipage{\linewidth}
+... code listing here ...
+\endminipage
+\end{minted}
+\caption[Samepage Trick]{Constrain code example to single page}
+\label{code:latex:same_page}
+\end{listing}
+
+\subsubsection{\texttt{listings} vs \texttt{listing}}
+
+The \verb|listings| package displays code, whereas the \verb|listing| package acts as an organizational tool, and is imported with \verb|minted|. Both use captions and labels, and both provide the ability to generate lists of their examples.
+
+While their different functions would seem to preclude them from problems, the two packages actually conflict in small ways. Typically, when writing a document with the intent of displaying code, it is best to choose between \verb|listings| and \verb|minted|, and avoid using both.
+
+This documents uses both, and mitigates any conflicts by synchronizing the counters of both packages, as seen in the abstract, and further obfuscates small differences by changing select listing options in the preamble.
+
+\newpage
