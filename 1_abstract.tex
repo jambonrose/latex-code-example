@@ -14,6 +14,13 @@ To avoid a monolithic \LaTeX{} document and make perusing the code simpler, each
 Note that all code is licensed under the Simplified BSD License, a copy of which is included with the project code, found \link{https://github.com/jambonrose/latex-code-example}{on github}.
 \end{abstract}
 
+% before printing the list of code listings
+% we ensure that the two conflicting packages
+% listings and listing (imported with minted)
+% count the same way, using the chngcntr package
+% avoiding listings with the same numbers
+\counterwithin{lstlisting}{subsection}
+\counterwithin{listing}{subsection}
 
 % below we print the table of contents and list of examples in two columns
 \setlength{\columnseprule}{1pt} % add seperator between columns
