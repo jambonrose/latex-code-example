@@ -110,6 +110,17 @@
 % ex: \link{url}{text}
 \newcommand{\link}[2]{\href{#1}{\color{blue}\uline{#2}}}
 
+\newcommand{\addlisting}[1]{\addToLoL{listing}{#1}}
+
+\newcommand{\addlstlisting}[1]{\addToLoL{lstlisting}{#1}}
+
+\newcommand{\addToLoL}[2]%
+           {\phantomsection%
+           \addtocounter{#1}{1}%
+           \addcontentsline{lol}{#1}%
+                            {\protect\numberline%
+                                     {\thesubsection.\arabic{#1}}#2}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENVRIONMENTS
 
