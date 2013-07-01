@@ -6,9 +6,10 @@
 
 \subsection{\texttt{listings} Package}
 
-The following uses the \verb|listings| package to create an environment.
+The \verb|listings| (plural) package provides the \verb|lstlisting| environment, which is a more sophisticated method for displaying source code. The environment will bold keywords, and comes with a slew of options, including the ability to add to the list of keywords. The environment also makes it easy to organize code listings, providing options for a caption and a label.
 
-\noindent\minipage{\linewidth} % this avoids the code below being split across the page
+The example below opts to frame the entire example, displaying line numbers starting at 1, and declaring \verb|caption| and \verb|label| options.
+
 \begin{lstlisting}[aboveskip=\baselineskip,%
                    basicstyle=\ttfamily,%
                    belowskip=\baselineskip,%
@@ -33,7 +34,13 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 \end{lstlisting}
-\endminipage % ends the samepage environment mentioned before the listing
 
-On top of an environment, the \lstinline{listings} package also provides a way to format inline text using \lstinline|\lstinline{}|, replacing the \lstinline{verb} command. Note that the settings for \lstinline|\lstinline{}| must be set in the options of \lstinline|\lstset{}| in the preamble. For more on the \lstinline{listings} package, please see \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{the wikibook on the subject}, or else \link{http://www.ctan.org/tex-archive/macros/latex/contrib/listings/}{the documentation provided by CTAN.}
-Note that while not discussed here, it is possible to create a list of listings (a table of contents of all the listings).
+To avoid duplication of settings at each code listing, the \verb|listings| package provides a way of defining \verb|styles| in the preamble, using the \verb|\lstdefinestyle| command, which can then be invoked at the declaration of the \verb|lstlisting| environment.
+
+To print a list of code listings, the \verb|listings| package provides the \verb|\lstlistoflistings| command. This document does not make use of this. Please see FILL IN LATER for information about the method used in this document.
+
+For more on the \lstinline{listings} package, please see \link{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{the wikibook on the subject}, or else \link{http://www.ctan.org/tex-archive/macros/latex/contrib/listings/}{the documentation provided by CTAN.}
+
+\subsubsection{\texttt{lstinline} Command}
+
+On top of an environment, the \lstinline{listings} package also provides a way to format inline text using \lstinline|\lstinline|, much like the \lstinline{\verb} command. Note that the settings for \lstinline|\lstinline| must be set in the options of \lstinline|\lstset| in the preamble.
