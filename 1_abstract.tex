@@ -22,14 +22,14 @@ Note that all code is licensed under the Simplified BSD License, a copy of which
 \counterwithin{lstlisting}{subsection}
 \counterwithin{listing}{subsection}
 
+% the output of the ToC and LoL is being affected by commands in the preamble
+
 % below we print the table of contents and list of examples in two columns
 \setlength{\columnseprule}{1pt} % add seperator between columns
 \begin{multicols}{2} % create columns
 \begin{footnotesize} % make fonts smaller
-\renewcommand\contentsname{\small\centering Contents} % change title (font size)
 \tableofcontents
 \columnbreak
-\renewcommand\listoflistingscaption{\small\centering List of Code Examples} % change title
 \listoflistings
 \end{footnotesize}
 \end{multicols}

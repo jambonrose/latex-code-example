@@ -89,6 +89,15 @@
 \definecolor{codeFrame}{gray}{0.3}
 \definecolor{codeBG}{gray}{0.99}
 
+% change font size and alignment of ToC title
+\renewcommand\contentsname{\small\centering Contents}
+
+% change listing caption title for Listings package
+\renewcommand\lstlistingname{Code Example}
+
+% change listing options for listing package (imported with minted)
+\renewcommand\listingscaption{Code Example}
+\renewcommand\listoflistingscaption{\small\centering List of Code Examples}
 
 % make caption text white, backed by black box across line
 \DeclareCaptionFont{white}{\color{white}}
