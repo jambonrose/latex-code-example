@@ -6,7 +6,7 @@
 
 \subsection{\texttt{verbatim} Environment}
 
-Here is an example that uses \LaTeX 's \verb|verbatim| environment.
+The \verb|verbatim| environment, supplied by \LaTeX , is the most basic environment a writer may use to display source code. Below is an example.
 
 \addlisting{Verbatim Example} % manually add code below to list of examples
 \begin{verbatim}
@@ -22,10 +22,16 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
 \end{verbatim}
 
-Note that the quotes used are standard programming quotes, as opposed to \LaTeX 's backtick-quote combination. This is possible because of the \verb|upquote| package, included in the preamble of the document.
+The \verb|verbatim| environment is important, as it is the basis for all other code listing environments demonstrated in this document. This means that packages that affect \verb|verbatim| listings will also affect these other listings.
 
-\LaTeX{} further supplies the \verb|\verb| command, allowing for inline formatting.
+For example, the \verb|upquote| package, which allows for normal single quotes usage in \verb|verbatim| environments (as opposed to \LaTeX 's backtick-quote combination), will work in \verb|listings| and \verb|minted| environments, because they are built on top of \verb|verbatim|. \link{www.ctan.org/tex-archive/macros/latex/contrib/upquote}{Read more about \texttt{upquote} at CTAN.}
 
-On a related note, note that the \verb|\verb| command can only be used in captions if the entire command is preceded by the \verb|\cprotect| command, included in the \verb|cprotect| package, which you can read more about \link{http://www.ctan.org/tex-archive/macros/latex/contrib/cprotect}{on the documentation provided by CTAN}. An example is demonstrated in the caption of listing~\ref{code:django:models_basic_minted} on page~\pageref{code:django:models_basic_minted}.
+\subsubsection{\texttt{verb} Command}
 
-Finally, text in chapter titles (or section, subsection, etc) are formatted with \verb|\texttt| in this document, as the use of \verb|\verb| in these areas appears to conflict with the \verb|hyperref| package. We could use \verb|\texttt| in captions as well, but that would defeat our purpose of demonstrating all the tools.
+Along with the environment, \LaTeX{} supplies the inline \verb|\verb| command, which is used on and off throughout the document to format the names of packages and environments.
+
+Note, however, that the \verb|\verb| command should be used in neither headings (such as \verb|\section|) nor captions. Use of \verb|\verb| in captions causes compilation errors. Use of \verb|\verb| in headings will cause problems with the \verb|hyperref| package, and may lead to over- or under- full box errors. 
+
+Instead, use the \verb|\texttt| command, as demonstrated in the headings of this document.
+
+If you absolutely must use \verb|\verb| in a caption, you may import the \verb|cprotect| package, which you can read more about \link{http://www.ctan.org/tex-archive/macros/latex/contrib/cprotect}{on the documentation provided by CTAN}, and precede the caption with the \verb|\cprotect| command. \autoref{code:django:models_basic_minted} on \autopageref{code:django:models_basic_minted} demonstrates usage.
